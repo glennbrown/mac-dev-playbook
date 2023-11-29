@@ -1,0 +1,9 @@
+---
+
+roles:
+  - src: elliotweiser.osx-command-line-tools
+  - src: geerlingguy.dotfiles
+
+collections:
+  - geerlingguy.mac
+  
