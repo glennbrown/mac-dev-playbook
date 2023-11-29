@@ -6,7 +6,10 @@ This playbook installs and configures most of the software I use on my Mac for s
 
 ## Installation
 
-1. Ensure Apple's command line tools are installed `xcode-select -install`
+1. Ensure Apple's command line tools are installed
+  
+    xcode-select -install
+
 2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pipx)
         
     1. Run the following command to add system Python 3 and .local binary to your $PATH: `exportPATH="$HOME/.local/bin:$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"`
