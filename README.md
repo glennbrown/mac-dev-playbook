@@ -13,7 +13,7 @@ This playbook installs and configures most of the software I use on my Mac for s
     2. Upgrade pip: `sudo pip3 install --upgrade pip`
     3. Install pipx: `pip3 install pipx`
     4. Install Ansible: `pipx install --include-deps ansible`
-    5. Install extra dependencies `pipx install --include-deps ansible argcomplete ansible-lint`
+    5. Install extra dependencies `pipx inject --include-apps ansible argcomplete ansible-lint`
 
 3. Clone or download this repository to your local drive.
 4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
