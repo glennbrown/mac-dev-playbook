@@ -19,7 +19,7 @@ This playbook installs and configures most of the software I use on my Mac for s
 4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
 5. Run `ansible-playbook main.yml --ask-become-pass` to configure the system, entering you MacOS account password when prompted for the 'BECOME' password.
 
-> [!NOTE] 
+> [!NOTE]
 > If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
 
 > [!TIP]
@@ -32,13 +32,15 @@ You can use this playbook to manage other Macs as well; the playbook doesn't eve
   1. (On the Mac you want to connect to:) Go to System Preferences > Sharing.
   2. Enable 'Remote Login'.
 
+> [!TIP]
 > You can also enable remote login on the command line:
 >
 >     sudo systemsetup -setremotelogin on
 
-Then edit the `hosts.ini` file in this repository and add to the '[macs]' group:
+Then edit the `hosts.ini` file in this repository and add to the '[all]' group:
 
 ```
+
 [all]
 glenns-laptop ansible_host=localhost ansible_connection=local
 remote-machine ansible_host=[ip address of machine] 
@@ -46,6 +48,7 @@ remote-machine ansible_host=[ip address of machine]
 [all:vars]
 ansible_user=[mac user name]
 ansible_python_interpreter=/usr/bin/python3
+
 ```
 
 If you need to supply an SSH password (if you don't use SSH keys), make sure to pass the `--ask-pass` parameter to the `ansible-playbook` command.
@@ -59,6 +62,7 @@ You can filter which part of the provisioning process to run by specifying a set
 ou can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file. For example, you can customize the installed packages and apps with something like:
 
 ```yaml
+
 homebrew_installed_packages:
   - cowsay
   - git
@@ -81,6 +85,7 @@ dockitems_persist:
   - name: "Sublime Text"
     path: "/Applications/Sublime Text.app/"
     pos: 5
+
 ```
 
 Any variable can be overridden in `config.yml`; see the supporting roles' documentation for a complete list of available variables.
@@ -172,4 +177,3 @@ Check out [Ansible for DevOps](https://www.ansiblefordevops.com/), which teaches
 ## Author
 
 This project was inspired by [Jeff Geerling's](https://github.com/geerlingguy/mac-dev-playbook) which was originally inspired by [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks)).
-
