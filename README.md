@@ -16,10 +16,14 @@ This playbook installs and configures most of the software I use on my Mac for s
     5. Install extra dependencies `pipx install --include-deps ansible argcomplete ansible-lint`
 
 3. Clone or download this repository to your local drive.
-4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install requiredAnsible roles.
+4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
 5. Run `ansible-playbook main.yml --ask-become-pass` to configure the system, entering you MacOS account password when prompted for the 'BECOME' password.
 
-> Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case. You can also install other ways documented [here](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
+> [!NOTE] 
+> If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
+
+> [!TIP]
+> You can also install ansible other ways documented [here](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
 
 ### Use with a remote Mac
 
