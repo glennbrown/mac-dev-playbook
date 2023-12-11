@@ -1,0 +1,11 @@
+---
+
+- name: Configure MacOS Defaults
+  community.general.osx_defaults:
+    domain: "{{ item.domain | default('NSGlobalDomain') }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type | default(omit) }}"
+    state: "{{ item.state | default(omit) }}"
+    array_add: "{{ item.array_add | default(omit) }}"
+    value: "{{ item.value | default(omit) }}"
+  loop: "{{ macos_default_settings }}"

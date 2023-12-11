@@ -4,13 +4,13 @@
   hosts: all
 
   vars_files:
-    - 'defaults.yml'
+    - 'default.config.yml'
 
   pre_tasks:
-    - name: Include other variables
+    - name: Include playbook configuration
       include_vars: "{{ item }}"
       with_fileglob:
-        - "{{ playbook_dir }}/vars/*.yml"
+        - "{{ playbook_dir }}/config.yml"
       tags: ['always']
 
   roles:
@@ -32,8 +32,8 @@
     - import_tasks: tasks/extra-packages.yml
       tags: ['extra-packages']
 
-    #- import_tasks: tasks/osx-defaults.yml
-    #  tags: ['osx-defaults']
+    - import_tasks: tasks/macos.yml
+      tags: ['macos']
     
     - name: Run post-provision task files in a block.
       tags: ['post']

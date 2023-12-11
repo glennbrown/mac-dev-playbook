@@ -1,0 +1,102 @@
+---
+
+downloads: ~/.ansible-downloads/
+
+configure_dotfiles: false
+configure_terminal: false
+configure_macos: false
+
+## Set to 'true' to configure the Dock via dockutil.
+configure_dock: false
+dockitems_remove: []
+# - Launchpad
+# - TV
+# - Podcasts
+# - 'App Store'
+dockitems_persist: []
+# - name: "Sublime Text"
+#   path: "/Applications/Sublime Text.app/"
+#   pos: 5
+
+homebrew_installed_packages:
+  # Ansible installed/managed via pipx
+  - bash
+  - bash-completion@2
+  - btop
+  - brew-cask-completion
+  - coreutils
+  - ffmpeg
+  - flac
+  - gawk
+  - gnu-tar
+  - go
+  - htop
+  - iperf3
+  - jq
+  - just
+  - lame
+  - lesspipe
+  - lz4
+  - lzo
+  - nano
+  - nanorc
+  - ncurses
+  - neofetch
+  - nmap
+  - perl
+  - pv
+  - qemu
+  - ruby
+  - screenresolution
+  - smartmontools
+  - snappy
+  - socat
+  - sshpass
+  - svt-av1
+  - tmux
+  - webp
+  - wget
+  - when
+  - x264
+  - x265
+  - xvid
+  - xz
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/command-not-found
+  - homebrew/services
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - 1password
+  - 1password-cli
+  - balenaetcher
+  - coconutbattery
+  - docker
+  - font-hack-nerd-font
+  - font-meslo-lg-nerd-font
+  - handbrake
+  - jellyfin-media-player
+  - logi-options-plus
+  - mediahuman-audio-converter
+  - mediainfo
+  - meld
+  - musicbrainz-picard
+  - netspot
+  - obsidian
+  - parsec
+  - plex
+  - raspberry-pi-imager
+  - spotify 
+  - timemachineeditor
+  - utm
+  - visual-studio-code
+  - vlc
+  - vmware-horizon-client
+  - xquartz
+
+# See `geerlingguy.mas` role documentation for usage instructions.
+mas_installed_apps: []

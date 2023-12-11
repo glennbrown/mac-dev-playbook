@@ -35,7 +35,7 @@ You can use this playbook to manage other Macs as well; the playbook doesn't eve
 Then edit the `hosts.ini` file in this repository and add to the '[macs]' group:
 
 ```
-[macs]
+[all]
 glenns-laptop ansible_host=localhost ansible_connection=local
 remote-machine ansible_host=[ip address of machine] 
 
@@ -45,3 +45,127 @@ ansible_python_interpreter=/usr/bin/python3
 ```
 
 If you need to supply an SSH password (if you don't use SSH keys), make sure to pass the `--ask-pass` parameter to the `ansible-playbook` command.
+
+### Running a specific set of tagged tasks
+
+You can filter which part of the provisioning process to run by specifying a set of tags using `ansible-playbook`'s `--tags` flag. The tags available are `dotfiles`, `homebrew`, `mas`, `extra-packages` and `osx`.
+
+    ansible-playbook main.yml -K --tags "dotfiles,homebrew"
+
+ou can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file. For example, you can customize the installed packages and apps with something like:
+
+```yaml
+homebrew_installed_packages:
+  - cowsay
+  - git
+  - go
+
+mas_installed_apps:
+  - { id: 443987910, name: "1Password" }
+  - { id: 498486288, name: "Quick Resizer" }
+  - { id: 557168941, name: "Tweetbot" }
+  - { id: 497799835, name: "Xcode" }
+
+pipx_packages:
+  - name: mkdocs
+
+configure_dock: true
+dockitems_remove:
+  - Launchpad
+  - TV
+dockitems_persist:
+  - name: "Sublime Text"
+    path: "/Applications/Sublime Text.app/"
+    pos: 5
+```
+
+Any variable can be overridden in `config.yml`; see the supporting roles' documentation for a complete list of available variables.
+
+## Included Applications / Configuration (Default)
+
+Applications (installed with Homebrew Cask):
+
+- [1Password](https://1password.com)
+- [balenaEtcher](https://etcher.balena.io)
+- [coconutBattery](https://coconut-flavour.com/coconutbattery/)
+- [Docker](https://www.docker.com/)
+- [Handbrake](https://handbrake.fr/)
+- [Jellyfin Media Player](https://jellyfin.org)
+- [Logi Options Plus](https://www.logitech.com/en-us/software/logi-options-plus.html)
+- [MediaHuman Audio Converter](https://www.mediahuman.com/audio-converter/welcome.html)
+- [MediaInfo](https://mediaarea.net/en/MediaInfo)
+- [Meld](https://meldmerge.org)
+- [MusicBrainz Picard](https://picard.musicbrainz.org)
+- [NetSpot](https://www.netspotapp.com)
+- [Obsidian](https://obsidian.md)
+- [Parsec](https://parsec.app)
+- [Plex](https://www.plex.tv)
+- [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+- [Spotify](https://www.spotify.com)
+- [TimeMachineEditor](https://tclementdev.com/timemachineeditor/)
+- [UTM](https://mac.getutm.app)
+- [Visual Studio Code](https://code.visualstudio.com)
+- [VLC](https://www.videolan.org)
+- [Vmware Horizon Client](https://customerconnect.vmware.com/en/downloads/info/slug/desktop_end_user_computing/vmware_horizon_clients/horizon_8)
+- [XQuartz](https://www.xquartz.org)
+
+Fonts (intalled with Homebrew Cask)
+
+- [Nerd Fonts](https://www.nerdfonts.com)
+  - Hack
+  - MesloLG
+
+Packages (installed with Homebrew)
+
+- bash
+- bash-completion@2
+- btop
+- brew-cask-completion
+- coreutils
+- ffmpeg
+- flac
+- gawk
+- gnu-tar
+- go
+- htop
+- iperf3
+- jq
+- just
+- lame
+- lesspipe
+- lz4
+- lzo
+- nano
+- nanorc
+- ncurses
+- neofetch
+- nmap
+- perl
+- pv
+- qemu
+- ruby
+- screenresolution
+- smartmontools
+- snappy
+- socat
+- sshpass
+- svt-av1
+- tmux
+- webp
+- wget
+- when
+- x264
+- x265
+- xvid
+- xz
+
+My [dotfiles](https://github.com/glennbrown/dotfiles) are also installed into the current user's home directory, including the `.osx` dotfile for configuring many aspects of macOS for better performance and ease of use. You can disable dotfiles management by setting `configure_dotfiles: no` in your configuration.
+
+## Ansible for DevOps
+
+Check out [Ansible for DevOps](https://www.ansiblefordevops.com/), which teaches you how to automate almost anything with Ansible. This book was made by Jeff Geerling and has been indepensible in my ability to learn Ansible.
+
+## Author
+
+This project was inspired by [Jeff Geerling's](https://github.com/geerlingguy/mac-dev-playbook) which was originally inspired by [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks)).
+
