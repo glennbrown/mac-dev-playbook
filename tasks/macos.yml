@@ -9,3 +9,12 @@
     array_add: "{{ item.array_add | default(omit) }}"
     value: "{{ item.value | default(omit) }}"
   loop: "{{ macos_default_settings }}"
+
+- name: Check if ~/Library is hidden
+  stat:
+    path: ~/Library
+  register: library_status
+  
+- name: Set ~/Library to not be hidden in Finder
+  command: chflags nohidden ~/Library
+  when: library_status.stat.flags != 0
