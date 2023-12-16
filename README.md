@@ -23,10 +23,10 @@ This playbook installs and configures most of the software I use on my Mac for s
 > [!TIP]
 > You can also install ansible other ways documented [here](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
 >
-> I also have a requirements.txt file that can be used that includes ansible-lint and some other nice adds. `pip3 install --user -r requirements.txt` can be used to install it.
+>I also have a requirements.txt file that can be used that includes ansible-lint and some other nice adds. `pip3 install --user -r requirements.txt` can be used to install it.
 
-> [!WARN]
-> MacOS as of Sonoma ships with Python 3.9.6, Ansible 9.x and higher has a minimum requirement of > > Python 3.10 or higher. I plan to test in a VM with the Python.org offical 3.11 package but if you > stick to included Python you are limited to Ansible 8.x
+> [!WARNING]
+> MacOS as of Sonoma ships with Python 3.9.6, Ansible 9.x and higher has a minimum requirement of Python 3.10 or higher. I plan to test in a VM with the Python.org offical 3.11 package but if you stick to included Python you are limited to Ansible 8.x
 
 ### Use with a remote Mac
 
