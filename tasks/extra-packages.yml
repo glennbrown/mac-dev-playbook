@@ -1,16 +1,15 @@
 ---
 
-- name: Ensure pipx is installed
+- name: Install Pip packages
   pip:
-    name: pipx
-    state: present
-
-- name: Install Pip packages via pipx
-  community.general.pipx:
     name: "{{ item.name | default(item) }}"
-    state: "{{ item.state | default(present) }}"
-    system_site_packages: "{{ item.system_site_packages | default(true) }}"
-    install_apps: "{{ item.install_apps | default(true) }}"
-    inject_packages: "{{ item.inject_packages | default(omit) }}"
-    install_deps: "{{ item.install_deps | default(true) }}"
-  loop: "{{ pipx_packages }}"
+    state: "{{ item.state | default('present') }}"
+    version: "{{ item.version | default(omit) }}"
+    executable: "{{ item.executable | default('pip3') }}"
+    virtualenv: "{{ item.virtualenv | default(omit) }}"
+    virtualenv_command: "{{ item.virtualenv_command | default(omit) }}"
+    virtualenv_site_packages: "{{ item.virtualenv_site_packages | default(omit) }}"
+    extra_args: "{{ item.extra_args | default('--user') }}"
+  environment: 
+    CFLAGS: '-I/opt/homebrew/include -L/opt/homebrew/lib'
+  loop: "{{ pip_packages }}"

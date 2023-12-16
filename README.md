@@ -7,15 +7,13 @@ This playbook installs and configures most of the software I use on my Mac for s
 ## Installation
 
 1. Ensure Apple's command line tools are installed `xcode-select -install`
-2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pipx)
-        
-    1. Run the following command to add system Python 3 and .local binary to your $PATH: `export PATH="$HOME/.local/bin:$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"`
-    2. Upgrade pip: `sudo pip3 install --upgrade pip`
-    3. Install pipx: `pip3 install pipx`
-    4. Install Ansible: `pipx install --include-deps ansible`
-    5. Install extra dependencies `pipx inject --include-apps ansible argcomplete ansible-lint`
+2. Clone or download this repository to your local drive.
+3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip):
 
-3. Clone or download this repository to your local drive.
+    1. Run the following command to add system Python3 to your $PATH: `export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"`
+    2. Upgrade pip: `sudo pip3 install --upgrade pip`
+    3. Install Ansible: `pip3 install --user ansible`
+
 4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
 5. Run `ansible-playbook main.yml --ask-become-pass` to configure the system, entering you MacOS account password when prompted for the 'BECOME' password.
 
@@ -24,6 +22,11 @@ This playbook installs and configures most of the software I use on my Mac for s
 
 > [!TIP]
 > You can also install ansible other ways documented [here](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
+>
+> I also have a requirements.txt file that can be used that includes ansible-lint and some other nice adds. `pip3 install --user -r requirements.txt` can be used to install it.
+
+> [!WARN]
+> MacOS as of Sonoma ships with Python 3.9.6, Ansible 9.x and higher has a minimum requirement of > > Python 3.10 or higher. I plan to test in a VM with the Python.org offical 3.11 package but if you > stick to included Python you are limited to Ansible 8.x
 
 ### Use with a remote Mac
 
@@ -97,8 +100,11 @@ Applications (installed with Homebrew Cask):
 - [1Password](https://1password.com)
 - [balenaEtcher](https://etcher.balena.io)
 - [coconutBattery](https://coconut-flavour.com/coconutbattery/)
+- [Discord](https://discord.com/)
 - [Docker](https://www.docker.com/)
+- [Google Chrome](https://www.google.com/chrome/)
 - [Handbrake](https://handbrake.fr/)
+- [iTerm2](https://iterm2.com/)
 - [Jellyfin Media Player](https://jellyfin.org)
 - [Logi Options Plus](https://www.logitech.com/en-us/software/logi-options-plus.html)
 - [MediaHuman Audio Converter](https://www.mediahuman.com/audio-converter/welcome.html)
@@ -117,6 +123,7 @@ Applications (installed with Homebrew Cask):
 - [VLC](https://www.videolan.org)
 - [Vmware Horizon Client](https://customerconnect.vmware.com/en/downloads/info/slug/desktop_end_user_computing/vmware_horizon_clients/horizon_8)
 - [XQuartz](https://www.xquartz.org)
+- [Zoom](https://zoom.us)
 
 Fonts (intalled with Homebrew Cask)
 
@@ -168,7 +175,7 @@ Packages (installed with Homebrew)
 - xvid
 - xz
 
-My [dotfiles](https://github.com/glennbrown/dotfiles) are also installed into the current user's home directory, including the `.osx` dotfile for configuring many aspects of macOS for better performance and ease of use. You can disable dotfiles management by setting `configure_dotfiles: no` in your configuration.
+My [dotfiles](https://github.com/glennbrown/dotfiles) are also installed into the current user's home directory, including the `.macos_defaults` dotfile for configuring things that cannot be automated with [community.general.osx_defaults](https://docs.ansible.com/ansible/latest/collections/community/general/osx_defaults_module.html). You can disable dotfiles management by setting `configure_dotfiles: no` in your configuration.
 
 ## Ansible for DevOps
 

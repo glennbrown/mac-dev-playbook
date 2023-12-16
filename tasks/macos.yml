@@ -9,6 +9,17 @@
     array_add: "{{ item.array_add | default(omit) }}"
     value: "{{ item.value | default(omit) }}"
   loop: "{{ macos_default_settings }}"
+  register: macos_defaults_status
+
+- name: Restart affected services
+  command:  killall "{{ item }}"
+  loop: "{{ macos_services }}"
+  when: macos_defaults_status.changed
+
+- name: Logout Message 
+  debug:
+    msg: "Please log out and log back in to make all settings take effect."
+  when: macos_defaults_status.changed
 
 - name: Check if ~/Library is hidden
   stat:

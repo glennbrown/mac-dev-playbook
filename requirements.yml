@@ -5,5 +5,8 @@ roles:
   - src: geerlingguy.dotfiles
 
 collections:
-  - geerlingguy.mac
+  - source: https://github.com/glennbrown/ansible-collection-mac.git
+    name: geerlingguy.mac
+    version: gb-updates
+    type: git
   

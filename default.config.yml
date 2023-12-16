@@ -2,9 +2,33 @@
 
 downloads: ~/.ansible-downloads/
 
-configure_dotfiles: false
+# Dotfiles
+configure_dotfiles: true
+dotfiles_repo: git@github.com:glennbrown/dotfiles.git
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/Documents/dotfiles
+dotfiles_files:
+  - .zshrc
+  - .inputrc
+  - .macos_defaults
+  - .vimrc
+  - .bashrc
+  - .bash_profile
+
 configure_terminal: false
-configure_macos: false
+
+configure_macos: true
+macos_services:
+  - Dock
+  - Finder
+  - SystemUIServer
+macos_default_script: "~/.macos_defaults --no-restart"
+macos_default_settings: []
+# Expand save panel by default
+#  - domain: NSGlobalDomain
+#    key: NSNavPanelExpandedStateForSaveMode
+#    type: bool
+#    value: true
 
 ## Set to 'true' to configure the Dock via dockutil.
 configure_dock: false
@@ -51,7 +75,6 @@ homebrew_installed_packages:
   - smartmontools
   - snappy
   - socat
-  - sshpass
   - svt-av1
   - tmux
   - webp
@@ -63,8 +86,6 @@ homebrew_installed_packages:
   - xz
 
 homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
   - homebrew/cask-fonts
   - homebrew/command-not-found
   - homebrew/services
@@ -75,10 +96,13 @@ homebrew_cask_apps:
   - 1password-cli
   - balenaetcher
   - coconutbattery
+  - discord
   - docker
   - font-hack-nerd-font
   - font-meslo-lg-nerd-font
+  - google-chrome
   - handbrake
+  - iterm2
   - jellyfin-media-player
   - logi-options-plus
   - mediahuman-audio-converter
@@ -89,6 +113,7 @@ homebrew_cask_apps:
   - obsidian
   - parsec
   - plex
+  - powershell
   - raspberry-pi-imager
   - spotify 
   - timemachineeditor
@@ -97,6 +122,7 @@ homebrew_cask_apps:
   - vlc
   - vmware-horizon-client
   - xquartz
+  - zoom
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
