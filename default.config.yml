@@ -102,8 +102,6 @@ homebrew_cask_apps:
   - coconutbattery
   - discord
   - docker
-  - font-hack-nerd-font
-  - font-meslo-lg-nerd-font
   - google-chrome
   - handbrake
   - iterm2
