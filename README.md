@@ -125,12 +125,6 @@ Applications (installed with Homebrew Cask):
 - [XQuartz](https://www.xquartz.org)
 - [Zoom](https://zoom.us)
 
-Fonts (intalled with Homebrew Cask)
-
-- [Nerd Fonts](https://www.nerdfonts.com)
-  - Hack
-  - MesloLG
-
 Packages (installed with Homebrew)
 
 - bash
