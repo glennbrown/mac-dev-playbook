@@ -5,6 +5,7 @@ downloads: ~/.ansible-downloads/
 # Dotfiles
 configure_dotfiles: true
 dotfiles_repo: git@github.com:glennbrown/dotfiles.git
+dotfiles_repo_version: main
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Documents/dotfiles
 dotfiles_files:
@@ -84,6 +85,9 @@ homebrew_installed_packages:
   - x265
   - xvid
   - xz
+  - zsh-autosuggestions
+  - zsh-history-substring-search
+
 
 homebrew_taps:
   - homebrew/cask-fonts

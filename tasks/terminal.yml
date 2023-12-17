@@ -1,0 +1,47 @@
+---
+
+# Terminal.app
+- name: Get current Terminal.app profile
+  community.general.osx_defaults:
+    domain: com.apple.terminal
+    key: 'Default Window Settings'
+    state: list
+  register: terminal_theme
+
+- name: Ensure Dracula Terminal profile is added
+  copy: 
+    src: "{{ playbook_dir }}/files/terminal/Dracula.terminal"
+    dest: /tmp/Dracula.terminal
+  changed_when: false
+  when: terminal_theme.value != 'Dracula'
+
+- name: Ensure Dracula Terminal is added
+  command: open /tmp/Dracula.terminal
+  changed_when: false
+  when: terminal_theme.value != 'Dracula'
+
+- name: Ensure Dracula Terminal profile is set as Default
+  community.general.osx_defaults:
+    domain: com.apple.terminal
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    type: string
+    state: present
+  loop:
+    - { key: 'Default Window Settings', value: 'Dracula' }
+    - { key: 'Startup Window Settings', value: 'Dracula' }
+
+## iTerm 
+## Prefs are stored in my iCloud Drive
+- name: Ensure iTerm loads preferences
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    type: "{{ item.type }}"
+    state: present
+  loop:
+    - { key: 'LoadPrefsFromCustomFolder', value: true, type: bool }
+    - { key: 'PrefsCustomFolder', value: "/Users/gbrown/Documents/Apps/Config/iTerm", type: string }
+    - { key: "NoSyncNeverRemindPrefsChangesLostForFile_selection", value: 2, type: int }
+  
